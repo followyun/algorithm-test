@@ -1,7 +1,11 @@
 package com.my;
 
+import com.my.utils.MyBinarySearchTree;
+
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 两数之和的问题
@@ -14,13 +18,13 @@ import java.util.List;
  */
 public class SumOfTwoNumbers {
     public static boolean isIn(List<Integer> nums, int targetValue) {
-        //首先将数据进行升序排序
-        nums.sort(new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o1 - o2;
+        Set<Integer> appeared = new HashSet<>();
+        for(int num:nums){
+            if(appeared.contains(targetValue - num)){
+                return true;
             }
-        });
+            appeared.add(num);
+        }
 
         return false;
     }
